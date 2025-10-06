@@ -1,4 +1,4 @@
-package Entity;
+package com.demo.trellolite.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,11 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board {
+public class Column {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
 
     @OneToMany
-    private List<Column> columns;
+    private List<Card> cards;
 }

@@ -1,4 +1,4 @@
-package Dto;
+package com.demo.trellolite.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

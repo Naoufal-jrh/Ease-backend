@@ -1,9 +1,9 @@
-package Mapper.Impl;
+package com.demo.trellolite.Mapper.Impl;
 
 
-import Dto.CardDto;
-import Entity.Card;
-import Mapper.Mapper;
+import com.demo.trellolite.Dto.CardDto;
+import com.demo.trellolite.Entity.Card;
+import com.demo.trellolite.Mapper.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

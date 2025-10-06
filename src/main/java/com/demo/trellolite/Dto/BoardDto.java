@@ -1,15 +1,18 @@
-package Dto;
+package com.demo.trellolite.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CardDto {
+public class BoardDto {
     private Long id;
-    private String description;
+    private List<ColumnDto> columns;
 }

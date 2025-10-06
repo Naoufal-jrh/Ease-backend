@@ -1,4 +1,4 @@
-package Mapper;
+package com.demo.trellolite.Mapper;
 
 public interface Mapper<E,D> {
     D mapTo(E entity);

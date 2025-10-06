@@ -1,6 +1,6 @@
-package Repository;
+package com.demo.trellolite.Repository;
 
-import Entity.Board;
+import com.demo.trellolite.Entity.Board;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BoardRepository extends CrudRepository<Board, Long> {

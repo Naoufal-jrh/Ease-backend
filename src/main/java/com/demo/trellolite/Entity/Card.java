@@ -1,4 +1,4 @@
-package Entity;
+package com.demo.trellolite.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package Configuration;
+package com.demo.trellolite.Configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
