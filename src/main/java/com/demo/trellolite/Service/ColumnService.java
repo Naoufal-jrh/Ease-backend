@@ -5,4 +5,5 @@ import com.demo.trellolite.Dto.ColumnDto;
 
 public interface ColumnService {
     ColumnDto addCardToColumn(Long columnId, CardDto cardDto);
+    ColumnDto updateColumnFields(Long columnId, ColumnDto columnDto);
 }

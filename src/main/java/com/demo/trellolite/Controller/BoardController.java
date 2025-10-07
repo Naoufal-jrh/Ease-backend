@@ -17,4 +17,9 @@ public class BoardController {
     public BoardDto getBoard(@PathVariable Long boardId){
         return boardService.getBoardById(boardId);
     }
+
+    @PatchMapping("/{boardId}")
+    public BoardDto updateBoardFields(@PathVariable Long boardId, @RequestBody BoardDto board) {
+        return boardService.updateBoardFields(boardId, board);
+    }
 }

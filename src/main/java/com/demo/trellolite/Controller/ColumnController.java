@@ -17,4 +17,11 @@ public class ColumnController {
     public ColumnDto addCardToColumn(@PathVariable Long columnId, @RequestBody CardDto card) {
         return columnService.addCardToColumn(columnId, card);
     }
+
+    @PatchMapping("/{columnId}")
+    public ColumnDto updateCardFields(@PathVariable Long columnId, @RequestBody ColumnDto column) {
+        return columnService.updateColumnFields(columnId, column);
+    }
+
+
 }

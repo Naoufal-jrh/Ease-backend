@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.demo.trellolite.Service.ColumnService;
 import com.demo.trellolite.Service.CardService;
 
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ColumnServiceImpl implements ColumnService {
@@ -33,5 +35,12 @@ public class ColumnServiceImpl implements ColumnService {
         return columnMapper.mapTo(
                 columnRepository.save(column)
         );
+    }
+
+    @Override
+    public ColumnDto updateColumnFields(Long columnId, ColumnDto columnDto) {
+        Column column = columnRepository.findById(columnId).orElseThrow();
+        if(columnDto.getCards() != null) column.setCards(columnDto.getCards().stream().map(cardMapper::mapFrom).collect(Collectors.toList()));
+        return columnMapper.mapTo(columnRepository.save(column));
     }
 }
