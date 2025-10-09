@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.demo</groupId>
-    <artifactId>TrelloLite</artifactId>
+    <artifactId>Ease</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TrelloLite</name>
-    <description>TrelloLite</description>
+    <name>Ease</name>
+    <description>Ease</description>
     <url/>
     <licenses>
         <license/>

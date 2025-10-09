@@ -1,10 +1,8 @@
 package com.demo.trellolite.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.modelmapper.internal.bytebuddy.utility.nullability.MaybeNull;
 
 import java.util.List;
 
@@ -13,11 +11,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Column {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
+    private String name;
 
     @OneToMany
     private List<Card> cards;

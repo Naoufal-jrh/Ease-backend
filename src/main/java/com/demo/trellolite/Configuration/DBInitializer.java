@@ -23,18 +23,35 @@ public class DBInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Column col1 = Column.builder()
-                .title("Column 1")
+                .name("To Do")
                 .cards(getCards(3))
                 .build();
         Column col2 = Column.builder()
-                .title("Column 2")
+                .name("Done")
                 .cards(getCards(5))
                 .build();
         List<Column> columns = (List<Column>) columnRepository.saveAll(List.of(col1, col2));
         Board board = Board.builder()
                 .columns(columns)
+                .name("board 1")
                 .build();
         boardRepository.save(board);
+
+        Column col3 = Column.builder()
+                .name("Backlog")
+                .cards(getCards(3))
+                .build();
+        Column col4 = Column.builder()
+                .name("In Progress")
+                .cards(getCards(5))
+                .build();
+        List<Column> columns2 = (List<Column>) columnRepository.saveAll(List.of(col4, col3));
+        Board board2 = Board.builder()
+                .columns(columns2)
+                .name("board 2")
+                .build();
+        boardRepository.save(board);
+        boardRepository.save(board2);
     }
 
     private List<Card> getCards(int count) {

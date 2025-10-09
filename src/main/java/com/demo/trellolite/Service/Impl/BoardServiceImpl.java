@@ -9,6 +9,7 @@ import com.demo.trellolite.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,5 +32,15 @@ public class BoardServiceImpl implements BoardService {
         if(boardDto.getColumns() != null) board.setColumns(boardDto.getColumns().stream().map(columnMapper::mapFrom).collect(Collectors.toList()));
         return boardMapper.mapTo(boardRepository.save(board));
 
+    }
+
+    @Override
+    public List<BoardDto> getAllBoards() {
+        return ((List<Board>) boardRepository.findAll()).stream().map(boardMapper::mapTo).collect(Collectors.toList());
+    }
+
+    @Override
+    public BoardDto addBoard(BoardDto board) {
+        return boardMapper.mapTo(boardRepository.save(boardMapper.mapFrom(board)));
     }
 }

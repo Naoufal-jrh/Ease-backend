@@ -1,9 +1,6 @@
 package com.demo.trellolite.Dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,7 +8,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class ColumnDto {
     private Long id;
+    private String name;
+
     private List<CardDto> cards;
 }
