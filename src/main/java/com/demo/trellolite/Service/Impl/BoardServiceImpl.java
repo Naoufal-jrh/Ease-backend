@@ -21,9 +21,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDto getBoardById(Long boardId) {
-        return boardRepository.findById(boardId)
-                .map(boardMapper::mapTo)
-                .orElseThrow();
+        Board board = boardRepository.findById(boardId).orElseThrow();
+        return boardMapper.mapTo(board);
     }
 
     @Override
@@ -36,7 +35,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardDto> getAllBoards() {
-        return ((List<Board>) boardRepository.findAll()).stream().map(boardMapper::mapTo).collect(Collectors.toList());
+        // do not fetch the list of columns
+        return (boardRepository.findAllBoards()).stream().map(boardMapper::mapTo).collect(Collectors.toList());
     }
 
     @Override
