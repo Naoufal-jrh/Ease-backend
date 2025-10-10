@@ -22,36 +22,17 @@ public class DBInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Column col1 = Column.builder()
-                .name("To Do")
-                .cards(getCards(3))
-                .build();
-        Column col2 = Column.builder()
-                .name("Done")
-                .cards(getCards(5))
-                .build();
-        List<Column> columns = (List<Column>) columnRepository.saveAll(List.of(col1, col2));
-        Board board = Board.builder()
-                .columns(columns)
-                .name("board 1")
-                .build();
-        boardRepository.save(board);
+        Board board = Board.builder().name("Exams Prep").build();
 
-        Column col3 = Column.builder()
-                .name("Backlog")
-                .cards(getCards(3))
-                .build();
-        Column col4 = Column.builder()
-                .name("In Progress")
-                .cards(getCards(5))
-                .build();
-        List<Column> columns2 = (List<Column>) columnRepository.saveAll(List.of(col4, col3));
-        Board board2 = Board.builder()
-                .columns(columns2)
-                .name("board 2")
-                .build();
+        Column col = Column.builder().name("To Do").board(board).build();
+
+        List<Card> cards = getCards(3);
+        for(Card card : cards){
+            card.setColumn(col);
+        }
         boardRepository.save(board);
-        boardRepository.save(board2);
+        columnRepository.save(col);
+        cardRepository.saveAll(cards);
     }
 
     private List<Card> getCards(int count) {
@@ -61,6 +42,6 @@ public class DBInitializer implements CommandLineRunner {
                     Card.builder().description("Card "+i).build()
             );
         }
-        return (List<Card>) cardRepository.saveAll(cards);
+        return cards;
     }
 }

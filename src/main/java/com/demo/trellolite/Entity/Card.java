@@ -1,9 +1,6 @@
 package com.demo.trellolite.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.NotFound;
 
@@ -18,4 +15,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "columnId") // joint column instead of
+    private Column column;
 }

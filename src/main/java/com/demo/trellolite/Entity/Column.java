@@ -18,6 +18,10 @@ public class Column {
     private Long id;
     private String name;
 
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boardId") // foreign key instead of join table
+    private Board board;
+
+    @OneToMany(mappedBy = "column", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Card> cards;
 }
