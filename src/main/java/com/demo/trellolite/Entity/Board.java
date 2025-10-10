@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(exclude = "columns")
+@ToString(exclude = {"columns"})
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -9,7 +9,7 @@ import org.hibernate.annotations.NotFound;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
+@ToString(exclude = {"column"})
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
