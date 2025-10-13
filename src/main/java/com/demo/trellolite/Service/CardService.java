@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CardService {
     CardDto addCard(Long columnId, CardDto card);
-    List<CardDto> saveCards(Long columnId, List<CardDto> cards);
+    List<CardDto> addCards(Long columnId, List<CardDto> cards);
 }

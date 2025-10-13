@@ -22,7 +22,7 @@ public class CardController {
     }
 
     @PutMapping("/toColumn/{columnId}")
-    public List<CardDto> addCardsToColumn(@PathVariable Long columnId, @RequestBody List<CardDto> cards) {
-        return cardService.saveCards(columnId, cards);
+    public List<CardDto> addCards(@PathVariable Long columnId, @RequestBody List<CardDto> cards) {
+        return cardService.addCards(columnId, cards);
     }
 }

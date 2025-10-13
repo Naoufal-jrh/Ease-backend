@@ -35,7 +35,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<CardDto> saveCards(Long columnId, List<CardDto> cards) {
+    public List<CardDto> addCards(Long columnId, List<CardDto> cards) {
         // hibernate does a select query for each card !! inorder to do the merge function.
         // then he does an update query for each card, even if it was not changed.
         // this may cause a performance issue later.
