@@ -2,6 +2,9 @@ package com.demo.trellolite.Service;
 
 import com.demo.trellolite.Dto.CardDto;
 
+import java.util.List;
+
 public interface CardService {
-    CardDto createCard(CardDto cardDto);
+    CardDto addCard(Long columnId, CardDto card);
+    List<CardDto> saveCards(Long columnId, List<CardDto> cards);
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class ColumnDto {
     private Long id;
     private String name;
+    private Integer position;
 
     private List<CardDto> cards;
 }

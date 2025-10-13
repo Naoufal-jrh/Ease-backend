@@ -33,9 +33,4 @@ public class BoardController {
         System.out.println("adding board "+board);
         return boardService.addBoard(board);
     }
-
-    @PatchMapping("/{boardId}")
-    public BoardDto updateBoardFields(@PathVariable Long boardId, @RequestBody BoardDto board) {
-        return boardService.updateBoardFields(boardId, board);
-    }
 }

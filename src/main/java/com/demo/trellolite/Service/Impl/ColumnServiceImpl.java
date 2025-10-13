@@ -4,6 +4,7 @@ import com.demo.trellolite.Dto.BoardDto;
 import com.demo.trellolite.Dto.CardDto;
 import com.demo.trellolite.Dto.ColumnDto;
 import com.demo.trellolite.Entity.Board;
+import com.demo.trellolite.Entity.Card;
 import com.demo.trellolite.Entity.Column;
 import com.demo.trellolite.Mapper.Impl.CardMapper;
 import com.demo.trellolite.Mapper.Impl.ColumnMapper;
@@ -16,7 +17,9 @@ import com.demo.trellolite.Service.ColumnService;
 import com.demo.trellolite.Service.CardService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,8 +27,6 @@ import java.util.stream.Collectors;
 public class ColumnServiceImpl implements ColumnService {
     private final ColumnRepository columnRepository;
     private final ColumnMapper columnMapper;
-    private final CardMapper cardMapper;
-    private final CardService cardService;
 
     @Override
     public ColumnDto addColumn(Long boardId , ColumnDto columnDto) {
@@ -36,28 +37,19 @@ public class ColumnServiceImpl implements ColumnService {
         return columnMapper.mapTo(columnRepository.save(column));
     }
 
-
-
     @Override
-    public ColumnDto addCardToColumn(Long columnId, CardDto cardDto) {
-        // create the card first
-        CardDto newCard = cardService.createCard(cardDto);
-        // add card to column
-        Column column = columnRepository.findById(columnId).orElseThrow();
-        column.getCards().add(
-                cardMapper.mapFrom(
-                        newCard
-                )
-        );
-        return columnMapper.mapTo(
-                columnRepository.save(column)
-        );
+    public List<ColumnDto> addColumns(Long boardId, List<ColumnDto> columns) {
+        List<Column> oldColumnsList = columnRepository.findByBoardId(boardId);
+        Map<Long, Column> oldColumnsMap = new HashMap<>();
+        for(Column col : oldColumnsList) oldColumnsMap.put(col.getId(), col);
+
+        for(int i = 0; i < columns.size(); i++) {
+            ColumnDto c = columns.get(i);
+            oldColumnsMap.get(c.getId()).setPosition(i+1);
+        }
+
+        return ((List<Column>) columnRepository.saveAll(oldColumnsMap.values())).stream().map(columnMapper::mapTo).toList();
+
     }
 
-    @Override
-    public ColumnDto updateColumnFields(Long columnId, ColumnDto columnDto) {
-        Column column = columnRepository.findById(columnId).orElseThrow();
-        if(columnDto.getCards() != null) column.setCards(columnDto.getCards().stream().map(cardMapper::mapFrom).collect(Collectors.toList()));
-        return columnMapper.mapTo(columnRepository.save(column));
-    }
 }

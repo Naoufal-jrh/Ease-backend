@@ -17,20 +17,11 @@ import java.util.stream.Collectors;
 public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
-    private final ColumnMapper columnMapper;
 
     @Override
     public BoardDto getBoardById(Long boardId) {
         Board board = boardRepository.findById(boardId).orElseThrow();
         return boardMapper.mapTo(board);
-    }
-
-    @Override
-    public BoardDto updateBoardFields(Long boardId, BoardDto boardDto) {
-        Board board = boardRepository.findById(boardId).orElseThrow();
-        if(boardDto.getColumns() != null) board.setColumns(boardDto.getColumns().stream().map(columnMapper::mapFrom).collect(Collectors.toList()));
-        return boardMapper.mapTo(boardRepository.save(board));
-
     }
 
     @Override

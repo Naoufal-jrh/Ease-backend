@@ -10,4 +10,5 @@ import lombok.*;
 public class CardDto {
     private Long id;
     private String description;
+    private Integer position;
 }

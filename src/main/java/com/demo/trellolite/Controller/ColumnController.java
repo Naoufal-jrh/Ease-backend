@@ -7,6 +7,8 @@ import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/column")
 @RequiredArgsConstructor
@@ -16,18 +18,13 @@ public class ColumnController {
 
 
     @PostMapping
-    public ColumnDto addColumn(@RequestBody ColumnDto column, @PathParam(value = "1") Long boardId) {
+    public ColumnDto addColumn(@RequestBody ColumnDto column, @PathParam("") Long boardId) {
         return columnService.addColumn(boardId, column);
     }
 
-    @PostMapping("/{columnId}")
-    public ColumnDto addCardToColumn(@PathVariable Long columnId, @RequestBody CardDto card) {
-        return columnService.addCardToColumn(columnId, card);
-    }
-
-    @PatchMapping("/{columnId}")
-    public ColumnDto updateCardFields(@PathVariable Long columnId, @RequestBody ColumnDto column) {
-        return columnService.updateColumnFields(columnId, column);
+    @PutMapping("/toBoard/{boardId}")
+    public List<ColumnDto> addColumns(@PathVariable Long boardId, @RequestBody List<ColumnDto> columns) {
+        return columnService.addColumns(boardId, columns);
     }
 
 
