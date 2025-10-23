@@ -21,11 +21,6 @@ public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
 
     @Override
-    public MemberDto getById(Long id){
-        return memberMapper.mapTo(memberRepository.findById(id).orElseThrow());
-    }
-
-    @Override
     public MemberDto me() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
