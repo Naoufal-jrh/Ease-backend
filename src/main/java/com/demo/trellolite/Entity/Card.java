@@ -2,7 +2,6 @@ package com.demo.trellolite.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.NotFound;
 
 @Entity
 @Data

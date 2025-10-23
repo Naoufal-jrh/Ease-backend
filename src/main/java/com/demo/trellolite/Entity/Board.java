@@ -1,11 +1,8 @@
 package com.demo.trellolite.Entity;
 
-import com.demo.trellolite.Dto.BoardDto;
 import jakarta.persistence.*;
 import lombok.*;
-import org.modelmapper.internal.bytebuddy.asm.MemberRemoval;
 
-import javax.sound.midi.MetaMessage;
 import java.util.List;
 
 @Entity

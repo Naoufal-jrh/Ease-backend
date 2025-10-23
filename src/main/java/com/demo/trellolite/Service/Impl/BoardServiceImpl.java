@@ -3,7 +3,6 @@ package com.demo.trellolite.Service.Impl;
 import com.demo.trellolite.Dto.BoardDto;
 import com.demo.trellolite.Entity.Board;
 import com.demo.trellolite.Mapper.Impl.BoardMapper;
-import com.demo.trellolite.Mapper.Impl.ColumnMapper;
 import com.demo.trellolite.Repository.BoardRepository;
 import com.demo.trellolite.Service.BoardService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,5 @@
 package com.demo.trellolite.Controller;
 
-import com.demo.trellolite.Dto.CardDto;
 import com.demo.trellolite.Dto.ColumnDto;
 import com.demo.trellolite.Service.ColumnService;
 import jakarta.websocket.server.PathParam;

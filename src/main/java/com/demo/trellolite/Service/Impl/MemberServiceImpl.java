@@ -4,7 +4,6 @@ import com.demo.trellolite.Dto.MemberDto;
 import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Mapper.Impl.MemberMapper;
 import com.demo.trellolite.Repository.MemberRepository;
-import com.demo.trellolite.Service.AuthenticationService;
 import com.demo.trellolite.Service.MemberService;
 import com.demo.trellolite.securityUtils.MemberUserDetails;
 import lombok.RequiredArgsConstructor;

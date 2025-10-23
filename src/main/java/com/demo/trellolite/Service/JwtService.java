@@ -1,13 +1,9 @@
 package com.demo.trellolite.Service;
 
-import com.demo.trellolite.securityUtils.MemberUserDetails;
 import io.jsonwebtoken.Claims;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 
 public interface JwtService {

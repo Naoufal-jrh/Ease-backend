@@ -2,7 +2,6 @@ package com.demo.trellolite.Controller;
 
 
 import com.demo.trellolite.Dto.BoardDto;
-import com.demo.trellolite.Entity.Board;
 import com.demo.trellolite.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

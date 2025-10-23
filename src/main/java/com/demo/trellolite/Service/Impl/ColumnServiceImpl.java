@@ -1,26 +1,17 @@
 package com.demo.trellolite.Service.Impl;
 
-import com.demo.trellolite.Dto.BoardDto;
-import com.demo.trellolite.Dto.CardDto;
 import com.demo.trellolite.Dto.ColumnDto;
 import com.demo.trellolite.Entity.Board;
-import com.demo.trellolite.Entity.Card;
 import com.demo.trellolite.Entity.Column;
-import com.demo.trellolite.Mapper.Impl.CardMapper;
 import com.demo.trellolite.Mapper.Impl.ColumnMapper;
-import com.demo.trellolite.Repository.BoardRepository;
 import com.demo.trellolite.Repository.ColumnRepository;
-import com.demo.trellolite.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.demo.trellolite.Service.ColumnService;
-import com.demo.trellolite.Service.CardService;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

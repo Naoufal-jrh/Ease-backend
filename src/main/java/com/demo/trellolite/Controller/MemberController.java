@@ -1,7 +1,6 @@
 package com.demo.trellolite.Controller;
 
 import com.demo.trellolite.Dto.MemberDto;
-import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

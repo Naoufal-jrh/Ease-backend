@@ -5,7 +5,6 @@ import com.demo.trellolite.Dto.RegisterUserDto;
 import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Repository.MemberRepository;
 import com.demo.trellolite.Service.AuthenticationService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

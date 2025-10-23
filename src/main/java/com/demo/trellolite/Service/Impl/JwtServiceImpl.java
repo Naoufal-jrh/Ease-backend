@@ -2,7 +2,6 @@ package com.demo.trellolite.Service.Impl;
 
 import com.demo.trellolite.Service.JwtService;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ClaimsMutator;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;

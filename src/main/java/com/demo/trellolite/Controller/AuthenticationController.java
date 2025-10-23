@@ -9,7 +9,6 @@ import com.demo.trellolite.Service.AuthenticationService;
 import com.demo.trellolite.Service.JwtService;
 import com.demo.trellolite.securityUtils.MemberUserDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
