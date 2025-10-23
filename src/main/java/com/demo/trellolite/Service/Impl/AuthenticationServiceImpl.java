@@ -28,7 +28,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         user.getPassword()
                 )
         );
-        System.out.println("authentication in authenticate function "+authentication);
         return memberRepository.findByEmail(user.getEmail()).orElseThrow();
     }
 

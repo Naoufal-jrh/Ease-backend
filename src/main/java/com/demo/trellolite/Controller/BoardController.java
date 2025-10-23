@@ -29,7 +29,6 @@ public class BoardController {
 
     @PostMapping
     public BoardDto addBoard(@RequestBody BoardDto board) {
-        System.out.println("adding board "+board);
         return boardService.addBoard(board);
     }
 }

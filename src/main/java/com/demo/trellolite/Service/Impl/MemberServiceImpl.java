@@ -5,35 +5,32 @@ import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Mapper.Impl.MemberMapper;
 import com.demo.trellolite.Repository.MemberRepository;
 import com.demo.trellolite.Service.MemberService;
+import com.demo.trellolite.exceptions.ResourceNotFoundException;
 import com.demo.trellolite.securityUtils.MemberUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
 
     @Override
     public MemberDto me() {
-        try {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            MemberUserDetails currentMemberUD = (MemberUserDetails) authentication.getPrincipal();
-            System.out.println(currentMemberUD);
-            Long memberId = currentMemberUD.getMember().getId();
-            // refetching the memeber because the one in principle do not hold the list of boards
-            return memberMapper.mapTo(memberRepository.findById(memberId).orElseThrow());
-        } catch (Exception e){
-            System.out.println("exception in me()");
-            System.out.println(e.getMessage());
-            throw e;
-        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MemberUserDetails currentMemberUD = (MemberUserDetails) authentication.getPrincipal();
+        Long memberId = currentMemberUD.getMember().getId();
+        return memberMapper.mapTo(memberRepository.findById(memberId).orElseThrow(
+                () -> new ResourceNotFoundException("Member", "id", memberId)
+        ));
     }
 
     @Override

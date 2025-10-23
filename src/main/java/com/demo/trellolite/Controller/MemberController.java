@@ -18,7 +18,6 @@ public class MemberController {
     @GetMapping("/me")
     public MemberDto me() {
         MemberDto memberDto = memberService.me();
-        System.out.println("memeber dto : "+memberDto);
         return memberDto;
     }
 

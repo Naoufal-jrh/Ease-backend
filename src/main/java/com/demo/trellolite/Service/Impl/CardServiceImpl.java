@@ -8,17 +8,20 @@ import com.demo.trellolite.Repository.CardRepository;
 import com.demo.trellolite.Service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
 
     @Override
+    @Transactional
     public CardDto addCard(Long columnId, CardDto cardDto) {
         Card card = cardMapper.mapFrom(cardDto);
         card.setColumn(
@@ -34,6 +37,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Transactional
     public List<CardDto> addCards(Long columnId, List<CardDto> cards) {
         // hibernate does a select query for each card !! inorder to do the merge function.
         // then he does an update query for each card, even if it was not changed.
