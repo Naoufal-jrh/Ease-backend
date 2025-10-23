@@ -25,6 +25,7 @@ public class MemberUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        System.out.println("getting authorities...");
         return List.of();
     }
 

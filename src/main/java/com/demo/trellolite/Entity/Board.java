@@ -32,5 +32,4 @@ public class Board {
         this.id = id;
         this.name = name;
     }
-
 }

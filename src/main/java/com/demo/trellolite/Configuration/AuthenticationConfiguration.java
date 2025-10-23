@@ -25,7 +25,7 @@ public class AuthenticationConfiguration {
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider doaAuthenticationProvider() {
         // the Doa authentication provider takes a user details service that defines how to fetch the authenticated user
         // and a password encoder to hash the password
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
@@ -34,4 +34,5 @@ public class AuthenticationConfiguration {
 
         return provider;
     }
+
 }
