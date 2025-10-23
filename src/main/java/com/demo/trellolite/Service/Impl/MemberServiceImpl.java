@@ -21,17 +21,20 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final MemberMapper memberMapper;
 
+    @Override
+    public MemberDto getById(Long id){
+        return memberMapper.mapTo(memberRepository.findById(id).orElseThrow());
+    }
 
     @Override
     public MemberDto me() {
-        // just make this transactional to keep the session open
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             MemberUserDetails currentMemberUD = (MemberUserDetails) authentication.getPrincipal();
             System.out.println(currentMemberUD);
-            Member member = currentMemberUD.getMember();
-            member.setBoards(List.of());
-            return memberMapper.mapTo(member);
+            Long memberId = currentMemberUD.getMember().getId();
+            // refetching the memeber because the one in principle do not hold the list of boards
+            return memberMapper.mapTo(memberRepository.findById(memberId).orElseThrow());
         } catch (Exception e){
             System.out.println("exception in me()");
             System.out.println(e.getMessage());

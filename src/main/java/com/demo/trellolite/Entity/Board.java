@@ -20,7 +20,7 @@ public class Board {
     private Long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy(value = "position")
     private List<Column> columns;
 

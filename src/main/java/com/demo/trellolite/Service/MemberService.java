@@ -7,6 +7,7 @@ import org.springframework.http.converter.json.GsonBuilderUtils;
 import java.util.List;
 
 public interface MemberService {
+    MemberDto getById(Long id);
     MemberDto me();
     List<MemberDto> allMembers();
 }

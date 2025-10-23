@@ -2,6 +2,7 @@ package com.demo.trellolite.Dto;
 
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,6 +16,9 @@ public class MemberDto {
 
     private String fullName;
     private String email;
+
+    private Date createdAt;
+    private Date updatedAt;
 
     private List<BoardDto> boards;
 }
