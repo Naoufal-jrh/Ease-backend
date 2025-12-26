@@ -2,6 +2,7 @@ package com.demo.trellolite.Service.Impl;
 
 import com.demo.trellolite.Dto.BoardDto;
 import com.demo.trellolite.Entity.Board;
+import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Mapper.Impl.BoardMapper;
 import com.demo.trellolite.Repository.BoardRepository;
 import com.demo.trellolite.Service.BoardService;
@@ -33,13 +34,16 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardDto> getAllBoards() {
-        return boardRepository.findAllBoards().stream()
+        List<Board> boards = boardRepository.findAllBoards();
+        System.out.println("Fetched boards: " + boards);
+        return boards.stream()
                 .map(boardMapper::mapTo)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<BoardDto> getCurrentMemberBoards(Long memberId) {
+        System.out.println("Fetching boards for memberId: " + memberId);
         return boardRepository.findByOwnerId(memberId).stream()
                 .map(boardMapper::mapTo)
                 .collect(Collectors.toList());
@@ -49,8 +53,24 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public BoardDto addBoard(BoardDto boardDto) {
         // it is transactional in case the mapping failed
+        System.out.println("add board called : ");
+        System.out.println("boardDto: " + boardDto);
         Board board = boardMapper.mapFrom(boardDto);
         Board savedBoard = boardRepository.save(board);
+        System.out.println("saved board: " + savedBoard);
+        return boardMapper.mapTo(savedBoard);
+    }
+
+    @Override
+    @Transactional
+    public BoardDto addBoard(BoardDto boardDto, Member member) {
+        Board board = boardMapper.mapFrom(boardDto);
+        board.setOwner(member);
+        System.out.println("Adding board : " + board);
+        Board savedBoard = boardRepository.save(board);
+        System.out.println("saved board with owner: " + savedBoard.getOwner());
+        List<Board> boards = boardRepository.findByOwnerId(member.getId());
+        System.out.println("All boards for member after addition: " + boards);
         return boardMapper.mapTo(savedBoard);
     }
 }
