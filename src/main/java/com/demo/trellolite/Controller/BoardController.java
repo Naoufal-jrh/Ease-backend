@@ -2,8 +2,11 @@ package com.demo.trellolite.Controller;
 
 
 import com.demo.trellolite.Dto.BoardDto;
+import com.demo.trellolite.Entity.Member;
 import com.demo.trellolite.Service.BoardService;
+import com.demo.trellolite.securityUtils.MemberUserDetails;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,18 +20,24 @@ public class BoardController {
 
 
     @GetMapping
-    public List<BoardDto> getAllBoards() {
-        return boardService.getAllBoards();
+    public List<BoardDto> getAllBoards(Authentication authentication) {
+//        TODO: Implement member-specific boards retrieval
+        Member currentMember = ((MemberUserDetails) authentication.getPrincipal()).getMember();
+        return boardService.getCurrentMemberBoards(currentMember.getId());
     }
 
 
     @GetMapping("/{boardId}")
-    public BoardDto getBoard(@PathVariable Long boardId){
-        return boardService.getBoardById(boardId);
+    public BoardDto getBoard(@PathVariable Long boardId, Authentication authentication){
+//        TODO: Implement member-specific board retrieval
+        Member currentMember = ((MemberUserDetails) authentication.getPrincipal()).getMember();
+        return boardService.getBoardById(boardId, currentMember.getId());
     }
 
     @PostMapping
-    public BoardDto addBoard(@RequestBody BoardDto board) {
+    public BoardDto addBoard(@RequestBody BoardDto board, Authentication authentication) {
+        System.out.println("Authenticated user: " + authentication.getName());
+//        TODO: Implement member-specific board addition
         return boardService.addBoard(board);
     }
 }

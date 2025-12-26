@@ -16,6 +16,8 @@ import java.util.List;
 @Builder
 @ToString(exclude = "boards")
 public class Member {
+    // TODO: Add validation annotations
+    // TODO: The emails should be unique
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

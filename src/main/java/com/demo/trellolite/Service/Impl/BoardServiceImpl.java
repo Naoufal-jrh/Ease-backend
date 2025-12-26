@@ -25,8 +25,8 @@ public class BoardServiceImpl implements BoardService {
     private final BoardMapper boardMapper;
 
     @Override
-    public BoardDto getBoardById(Long boardId) {
-        Board board = boardRepository.findById(boardId)
+    public BoardDto getBoardById(Long boardId, Long memberId) {
+        Board board = boardRepository.findByIdAndOwnerId(boardId, memberId)
                 .orElseThrow(() -> new ResourceNotFoundException("Board", "id", boardId));
         return boardMapper.mapTo(board);
     }
@@ -34,6 +34,13 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardDto> getAllBoards() {
         return boardRepository.findAllBoards().stream()
+                .map(boardMapper::mapTo)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BoardDto> getCurrentMemberBoards(Long memberId) {
+        return boardRepository.findByOwnerId(memberId).stream()
                 .map(boardMapper::mapTo)
                 .collect(Collectors.toList());
     }

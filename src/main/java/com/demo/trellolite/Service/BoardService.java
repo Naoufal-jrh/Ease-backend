@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface BoardService {
-    BoardDto getBoardById(Long boardId) throws NoSuchElementException;
+    BoardDto getBoardById(Long boardId, Long memberId) throws NoSuchElementException;
     List<BoardDto> getAllBoards();
+    List<BoardDto> getCurrentMemberBoards(Long memberId);
     BoardDto addBoard(BoardDto board);
 }
