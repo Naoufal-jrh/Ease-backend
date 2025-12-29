@@ -17,8 +17,7 @@ public class MemberController {
 
     @GetMapping("/me")
     public MemberDto me() {
-        MemberDto memberDto = memberService.me();
-        return memberDto;
+        return memberService.me();
     }
 
     @GetMapping

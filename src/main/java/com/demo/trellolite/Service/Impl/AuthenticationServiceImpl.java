@@ -22,7 +22,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Member authenticate(LoginUserDto user) {
-        Authentication authentication = authenticationManager.authenticate(
+        authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.getEmail(),
                         user.getPassword()
